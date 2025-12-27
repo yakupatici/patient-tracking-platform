@@ -1,155 +1,105 @@
 # 🏥 AI-Supported Patient Tracking Platform
 
-Modern bir hasta takip sistemi - .NET 8 Backend + Angular 18 Frontend
+A modern patient tracking system built with .NET 8 Backend + Angular 18 Frontend.
 
-## 📋 Proje Özeti
+## 📋 Tech Stack
 
-| Bilgi | Detay |
-|-------|-------|
-| **Backend** | .NET 8 ASP.NET Core Web API |
-| **Frontend** | Angular 18+ Standalone Components |
-| **Veritabanı** | PostgreSQL |
-| **Authentication** | JWT (JSON Web Token) |
+| Layer | Technology |
+|-------|------------|
+| Backend | .NET 8 ASP.NET Core Web API |
+| Frontend | Angular 18+ Standalone Components |
+| Database | PostgreSQL |
+| Auth | JWT (JSON Web Token) |
 
 ---
 
-## 🚀 Hızlı Başlangıç
+## 🚀 Quick Start
 
-### Gereksinimler
+### Prerequisites
 - .NET 8 SDK
 - Node.js 18+
 - PostgreSQL 16+
 - Angular CLI 18+
 
-### 1. PostgreSQL Veritabanını Başlat
+### Option 1: Run with Docker (Recommended)
+
+```bash
+# Start all services
+docker-compose up -d
+
+# Access the application
+# Frontend: http://localhost:4200
+# Backend API: http://localhost:5283
+# Swagger: http://localhost:5283/swagger
+
+# Stop all services
+docker-compose down
+```
+
+### Option 2: Run Manually
+
+**1. Start PostgreSQL**
 ```bash
 brew services start postgresql@16
 ```
 
-### 2. Backend'i Çalıştır
+**2. Start Backend**
 ```bash
-cd backend
-dotnet run --project PatientTracking.API
+cd backend/PatientTracking.API
+dotnet run
 ```
-Backend çalışacaktır: `https://localhost:5001`
+Backend runs at: `http://localhost:5283`
 
-Swagger UI: `https://localhost:5001/swagger`
-
-### 3. Frontend'i Çalıştır
+**3. Start Frontend**
 ```bash
 cd frontend/patient-tracking-app
-npm install  # İlk kez çalıştırıyorsanız
+npm install
 ng serve
 ```
-Frontend çalışacaktır: `http://localhost:4200`
+Frontend runs at: `http://localhost:4200`
 
 ---
 
-## 📂 Proje Yapısı
-
-```
-AI-Supported Patient Tracking Platform/
-├── backend/                          # .NET Core Web API
-│   ├── PatientTracking.API/          # API projesi
-│   │   ├── Controllers/              # API endpoint'leri
-│   │   │   ├── AuthController.cs     # Giriş/Kayıt
-│   │   │   ├── PatientsController.cs # Hasta CRUD
-│   │   │   └── AiController.cs       # AI tahmini
-│   │   ├── Services/                 # İş mantığı
-│   │   ├── Data/                     # Veritabanı
-│   │   └── DTOs/                     # Veri transfer nesneleri
-│   ├── PatientTracking.Core/         # Model sınıfları
-│   └── PatientTracking.Tests/        # Unit testler
-├── frontend/                         # Angular uygulaması
-│   └── patient-tracking-app/
-│       └── src/app/
-│           ├── pages/                # Sayfa componentleri
-│           │   ├── login/            # Giriş sayfası
-│           │   ├── register/         # Kayıt sayfası
-│           │   ├── patient-list/     # Hasta listesi
-│           │   ├── patient-detail/   # Hasta detayı + AI tahmini
-│           │   └── patient-create/   # Yeni hasta ekleme
-│           ├── core/                 # Servisler ve guard'lar
-│           └── models/               # TypeScript modelleri
-└── docs/                             # Dokümantasyon
-```
-
----
-
-## 🔧 API Endpoint'leri
-
-### Auth (Kimlik Doğrulama)
-| Method | Endpoint | Açıklama |
-|--------|----------|----------|
-| POST | `/api/auth/register` | Yeni kullanıcı kaydı |
-| POST | `/api/auth/login` | Kullanıcı girişi |
-
-### Patients (Hastalar)
-| Method | Endpoint | Açıklama |
-|--------|----------|----------|
-| GET | `/api/patients` | Tüm hastaları getir |
-| GET | `/api/patients/{id}` | ID ile hasta getir |
-| POST | `/api/patients` | Yeni hasta oluştur |
-| PUT | `/api/patients/{id}` | Hasta güncelle |
-| DELETE | `/api/patients/{id}` | Hasta sil |
-
-### AI Prediction (Yapay Zeka Tahmini)
-| Method | Endpoint | Açıklama |
-|--------|----------|----------|
-| GET | `/api/prediction/{patientId}` | Hasta için AI risk tahmini |
-
----
-
-## 🔐 Güvenlik
-
-- **JWT Authentication**: Tüm hasta endpoint'leri JWT token gerektirir
-- **Password Hashing**: BCrypt ile şifreleme
-- **CORS**: Frontend erişimi için yapılandırılmış
-
----
-
-## 🎨 Frontend Sayfaları
-
-1. **Login** - Kullanıcı girişi
-2. **Register** - Yeni kullanıcı kaydı
-3. **Patient List** - Hasta listesi tablosu
-4. **Patient Detail** - Hasta bilgileri + AI tahmin sonuçları
-5. **Patient Create** - Yeni hasta ekleme formu
-
----
-
-## 📦 Teknolojiler
-
-### Backend
-- .NET 8 ASP.NET Core Web API
-- Entity Framework Core 8
-- PostgreSQL (Npgsql)
-- JWT Bearer Authentication
-- BCrypt.Net (Password Hashing)
-- Swagger/OpenAPI
-
-### Frontend
-- Angular 18 (Standalone Components)
-- TypeScript
-- RxJS
-- FormsModule / Reactive Forms
-
----
-
-## 🧪 Test
+## 🧪 Run Tests
 
 ```bash
-# Backend testleri
 cd backend
 dotnet test
-
-# Frontend build testi
-cd frontend/patient-tracking-app
-npm run build
 ```
 
 ---
 
-## 📝 Lisans
+## 📂 Project Structure
 
-Bu proje eğitim amaçlı geliştirilmiştir.
+```
+├── backend/
+│   ├── PatientTracking.API/     # Web API
+│   ├── PatientTracking.Core/    # Models
+│   └── PatientTracking.Tests/   # Unit Tests
+├── frontend/
+│   └── patient-tracking-app/    # Angular App
+├── docker-compose.yml           # Docker Configuration
+└── docs/                        # Documentation
+```
+
+---
+
+## 🔧 API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/register` | Register new user |
+| POST | `/api/auth/login` | User login |
+| GET | `/api/patients` | Get all patients |
+| GET | `/api/patients/{id}` | Get patient by ID |
+| POST | `/api/patients` | Create patient |
+| DELETE | `/api/patients/{id}` | Delete patient |
+| GET | `/api/ai/predict/{patientId}` | Get AI prediction |
+| GET | `/api/medicalrecords/patient/{patientId}` | Get medical records |
+| POST | `/api/medicalrecords` | Create medical record |
+
+---
+
+## 📝 License
+
+This project was developed for educational purposes.
