@@ -60,15 +60,6 @@ Frontend runs at: `http://localhost:4200`
 
 ---
 
-## 🧪 Run Tests
-
-```bash
-cd backend
-dotnet test
-```
-
----
-
 ## 📂 Project Structure
 
 ```
