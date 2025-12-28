@@ -18,7 +18,7 @@ public class MedicalRecordsController : ControllerBase
         _context = context;
     }
 
-    // Hastanın tüm tıbbi kayıtlarını getir
+    // Get all medical records for a patient
     [HttpGet("patient/{patientId}")]
     public async Task<IActionResult> GetByPatientId(int patientId)
     {
@@ -38,14 +38,14 @@ public class MedicalRecordsController : ControllerBase
         return Ok(records);
     }
 
-    // Yeni muayene kaydı ekle
+    // Create new medical record
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateMedicalRecordRequest request)
     {
-        // Hasta var mı kontrol et
+        // Check if patient exists
         var patient = await _context.Patients.FindAsync(request.PatientId);
         if (patient == null)
-            return NotFound("Hasta bulunamadı.");
+            return NotFound("Patient not found.");
 
         var record = new MedicalRecord
         {

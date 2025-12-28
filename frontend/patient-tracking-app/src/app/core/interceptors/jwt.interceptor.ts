@@ -1,10 +1,10 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
-    // localStorage'dan token'ı al
+    // Get token from localStorage
     const token = localStorage.getItem('token');
 
-    // Eğer token varsa, isteğe Authorization header ekle
+    // If token exists, add Authorization header
     if (token) {
         const clonedRequest = req.clone({
             setHeaders: {
@@ -14,6 +14,6 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
         return next(clonedRequest);
     }
 
-    // Token yoksa isteği olduğu gibi gönder
+    // No token, send request as is
     return next(req);
 };

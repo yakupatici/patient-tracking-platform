@@ -1,32 +1,27 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 
-// Login sayfası
 import { LoginComponent } from './pages/login/login.component';
-// Kayıt sayfası
 import { RegisterComponent } from './pages/register/register.component';
-// Hasta listesi
 import { PatientListComponent } from './pages/patient-list/patient-list.component';
-// Hasta detayı
 import { PatientDetailComponent } from './pages/patient-detail/patient-detail.component';
-// Yeni hasta ekleme
 import { PatientCreateComponent } from './pages/patient-create/patient-create.component';
 
 export const routes: Routes = [
-    // Ana sayfa -> login'e yönlendir
+    // Home -> redirect to login
     { path: '', redirectTo: '/login', pathMatch: 'full' },
 
-    // Giriş sayfası
+    // Login page
     { path: 'login', component: LoginComponent },
 
-    // Kayıt sayfası
+    // Register page
     { path: 'register', component: RegisterComponent },
 
-    // Hasta sayfaları (giriş yapmış olmalı)
+    // Patient pages (requires authentication)
     {
         path: 'patients',
         component: PatientListComponent,
-        canActivate: [authGuard]  // Giriş kontrolü
+        canActivate: [authGuard]
     },
     {
         path: 'patients/new',
@@ -39,6 +34,6 @@ export const routes: Routes = [
         canActivate: [authGuard]
     },
 
-    // Bilinmeyen sayfalar -> login'e yönlendir
+    // Unknown pages -> redirect to login
     { path: '**', redirectTo: '/login' }
 ];

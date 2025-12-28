@@ -2,17 +2,17 @@ import { inject } from '@angular/core';
 import { Router, CanActivateFn } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
-// Bu guard, kullanıcı giriş yapmamışsa login sayfasına yönlendirir
+// Redirects to login if user is not authenticated
 export const authGuard: CanActivateFn = () => {
     const authService = inject(AuthService);
     const router = inject(Router);
 
-    // Kullanıcı giriş yapmış mı kontrol et
+    // Check if user is logged in
     if (authService.isLoggedIn()) {
-        return true; // Giriş yapmış, sayfaya erişebilir
+        return true;
     }
 
-    // Giriş yapmamış, login sayfasına yönlendir
+    // Not logged in, redirect to login
     router.navigate(['/login']);
     return false;
 };

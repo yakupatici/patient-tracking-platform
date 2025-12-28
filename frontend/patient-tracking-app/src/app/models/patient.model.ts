@@ -1,7 +1,7 @@
 // Patient related models
 export interface Patient {
     id: number;
-    tcId: string;  // TC Kimlik No
+    tcId: string;
     name: string;
     surname: string;
     birthDate: Date;
@@ -9,7 +9,7 @@ export interface Patient {
 }
 
 export interface CreatePatientRequest {
-    tcId: string;  // TC Kimlik No
+    tcId: string;
     name: string;
     surname: string;
     birthDate: Date;
@@ -17,7 +17,7 @@ export interface CreatePatientRequest {
 
 export interface UpdatePatientRequest {
     id: number;
-    tcId: string;  // TC Kimlik No
+    tcId: string;
     name: string;
     surname: string;
     birthDate: Date;
@@ -25,21 +25,21 @@ export interface UpdatePatientRequest {
 
 export interface AiPredictionResult {
     riskLevel: string;       // Low, Medium, High
-    probability: number;     // 0-1 arası
+    probability: number;     // 0-1 range
     recommendation: string;
     analysisDate: Date;
 }
 
-// Tıbbi kayıt (geçmiş vakalar)
+// Medical record
 export interface MedicalRecord {
     id: number;
     patientId: number;
-    description: string;     // Vaka açıklaması
-    doctorRemarks: string;   // Doktor notları
-    recordDate: Date;        // Kayıt tarihi
+    description: string;
+    doctorRemarks: string;
+    recordDate: Date;
 }
 
-// Yeni muayene kaydı oluşturma
+// Create medical record request
 export interface CreateMedicalRecordRequest {
     patientId: number;
     description: string;

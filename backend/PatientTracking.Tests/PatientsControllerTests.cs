@@ -27,8 +27,8 @@ public class PatientsControllerTests
         // Arrange
         var expectedPatients = new List<PatientDto>
         {
-            new PatientDto { Id = 1, TcId = "12345678901", Name = "Ali", Surname = "Yılmaz", BirthDate = new DateTime(1990, 1, 1) },
-            new PatientDto { Id = 2, TcId = "12345678902", Name = "Ayşe", Surname = "Kaya", BirthDate = new DateTime(1985, 5, 15) }
+            new PatientDto { Id = 1, TcId = "12345678901", Name = "Ali", Surname = "Atici", BirthDate = new DateTime(1990, 1, 1) },
+            new PatientDto { Id = 2, TcId = "12345678902", Name = "Jacob", Surname = "Kaya", BirthDate = new DateTime(1985, 5, 15) }
         };
         _mockPatientService.Setup(s => s.GetAllPatientsAsync()).ReturnsAsync(expectedPatients);
 
@@ -86,7 +86,7 @@ public class PatientsControllerTests
         {
             TcId = "12345678903",
             Name = "Fatma",
-            Surname = "Şahin",
+            Surname = "Smith",
             BirthDate = new DateTime(1992, 3, 20)
         };
         var createdPatient = new PatientDto
@@ -94,7 +94,7 @@ public class PatientsControllerTests
             Id = 3,
             TcId = "12345678903",
             Name = "Fatma",
-            Surname = "Şahin",
+            Surname = "Kaya",
             BirthDate = new DateTime(1992, 3, 20)
         };
         _mockPatientService.Setup(s => s.CreatePatientAsync(createRequest)).ReturnsAsync(createdPatient);

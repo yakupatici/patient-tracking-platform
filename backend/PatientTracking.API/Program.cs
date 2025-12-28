@@ -7,34 +7,59 @@ using PatientTracking.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ========== 1. SERVİSLER ==========
+// ========== 1. SERVICES ==========
 
-// Swagger/OpenAPI
+// Swagger/OpenAPI with JWT support
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Description = "Enter your JWT token"
+    });
+    options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
+        {
+            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            {
+                Reference = new Microsoft.OpenApi.Models.OpenApiReference
+                {
+                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
 
-// Controllers (API endpoint'leri için) - JSON çıktısı camelCase olacak
+// use camelCase for json output
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
-        // camelCase kullan (Angular ile uyumlu olması için)
+        // use camelCase for Angular compatibility
         options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
     });
 
-// DbContext - PostgreSQL bağlantısı
+// DbContext - PostgreSQL connection
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Auth Servisi
+// Auth Service
 builder.Services.AddScoped<IAuthService, AuthService>();
 
-// Patient Servisi
+// Patient Service
 builder.Services.AddScoped<IPatientService, PatientService>();
 
-// AI Servisi
+// AI Service
 builder.Services.AddScoped<IAiService, AiService>();
 
-// CORS - Frontend'in API'ye erişimi için
+// CORS - Allow frontend access
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
@@ -66,14 +91,18 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+// Auto-apply database migrations
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    db.Database.Migrate();
+}
+
 // ========== 2. MIDDLEWARE ==========
 
-// Development ortamında Swagger'ı aktif et
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// Enable Swagger (all environments)
+app.UseSwagger();
+app.UseSwaggerUI();
 
 // app.UseHttpsRedirection(); // Disabled for local development
 
@@ -84,7 +113,7 @@ app.UseCors("AllowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Controller'ları route'lara bağla
+// Map controllers to routes
 app.MapControllers();
 
 app.Run();

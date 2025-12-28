@@ -11,34 +11,34 @@ export class AuthService {
 
     constructor(private http: HttpClient) { }
 
-    // Kullanıcı kayıt işlemi
+    // Register user
     register(request: RegisterRequest): Observable<AuthResponse> {
         return this.http.post<AuthResponse>(`${this.apiUrl}/register`, request);
     }
 
-    // Kullanıcı giriş işlemi
+    // Login user
     login(request: LoginRequest): Observable<AuthResponse> {
         return this.http.post<AuthResponse>(`${this.apiUrl}/login`, request).pipe(
             tap(response => {
                 if (response.success && response.token) {
-                    // Token'ı localStorage'a kaydet
+                    // Save token to localStorage
                     localStorage.setItem('token', response.token);
                 }
             })
         );
     }
 
-    // Çıkış işlemi
+    // Logout
     logout(): void {
         localStorage.removeItem('token');
     }
 
-    // Token'ı getir
+    // Get token
     getToken(): string | null {
         return localStorage.getItem('token');
     }
 
-    // Kullanıcı giriş yapmış mı?
+    // Check if user is logged in
     isLoggedIn(): boolean {
         return !!this.getToken();
     }

@@ -5,7 +5,7 @@ using PatientTracking.API.Services;
 
 namespace PatientTracking.API.Controllers;
 
-[Authorize] // Sadece giriş yapmış kullanıcılar (doktorlar) erişebilir
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class PatientsController : ControllerBase

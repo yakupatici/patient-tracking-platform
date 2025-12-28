@@ -9,7 +9,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    // HTTP client ile JWT interceptor'ı aktif et
     provideHttpClient(withInterceptors([jwtInterceptor]))
   ]
 };
