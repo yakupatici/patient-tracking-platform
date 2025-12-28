@@ -6,7 +6,7 @@ A modern patient tracking system built with .NET 8 Backend + Angular 18 Frontend
 
 ## 🚀 Quick Start
 
-### Option 1: Run with Docker (Recommended)
+### Option 1: Run with Docker 
 
 ```bash
 # Start all services
