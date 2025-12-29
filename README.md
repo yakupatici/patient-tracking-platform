@@ -14,7 +14,7 @@ A modern patient tracking system built with **.NET 8 Backend** + **Angular 18 Fr
 
 ## 🚀 Quick Start
 
-### Option 1: Docker (Recommended)
+### Option 1: Docker 
 
 ```bash
 # Start all services (Backend, Frontend, PostgreSQL)
@@ -89,27 +89,4 @@ dotnet test
 └── docker-compose.yml           # Docker orchestration
 ```
 
----
 
-## 🔗 API Endpoints
-
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/auth/register` | POST | User registration |
-| `/api/auth/login` | POST | User login |
-| `/api/auth/signout` | POST | User logout |
-| `/api/patients` | GET, POST | List/Create patients |
-| `/api/patients/{id}` | GET, PUT, DELETE | Patient operations |
-| `/api/patients/{id}/medicalrecords` | GET, POST | Medical records |
-| `/api/ai/predict/{patientId}` | GET | AI predictions |
-
----
-
-## 🛠 Tech Stack
-
-- **Backend**: .NET 8, Entity Framework Core, JWT
-- **Frontend**: Angular 18, TypeScript, RxJS
-- **Database**: PostgreSQL 16
-- **DevOps**: Docker, Docker Compose
-- **Testing**: xUnit, Moq
-- **Docs**: Swagger/OpenAPI
