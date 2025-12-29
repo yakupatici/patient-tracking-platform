@@ -12,7 +12,7 @@ public class PatientDto
 
 public class CreatePatientRequest
 {
-    public string TcId { get; set; } = string.Empty; // TC Kimlik No
+    public string TcId { get; set; } = string.Empty; 
     public string Name { get; set; } = string.Empty;
     public string Surname { get; set; } = string.Empty;
     public DateTime BirthDate { get; set; }

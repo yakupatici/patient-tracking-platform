@@ -28,8 +28,12 @@ export class AuthService {
         );
     }
 
-    // Logout
+    // Logout - calls backend and clears token
     logout(): void {
+        const token = this.getToken();
+        if (token) {
+            this.http.post(`${this.apiUrl}/signout`, {}).subscribe();
+        }
         localStorage.removeItem('token');
     }
 

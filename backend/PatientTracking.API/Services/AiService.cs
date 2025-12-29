@@ -30,7 +30,7 @@ public class AiService : IAiService
             };
         }
 
-        // MOCK AI 
+        // MOCK AI for prediction
         
         int recordCount = patient.MedicalRecords.Count;
         int age = DateTime.UtcNow.Year - patient.BirthDate.Year;

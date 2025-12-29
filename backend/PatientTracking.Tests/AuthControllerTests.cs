@@ -6,10 +6,10 @@ using PatientTracking.API.Services;
 
 namespace PatientTracking.Tests;
 
-/// <summary>
+
 /// Unit tests for AuthController
 /// Tests: Register, Login operations
-/// </summary>
+
 public class AuthControllerTests
 {
     private readonly Mock<IAuthService> _mockAuthService;

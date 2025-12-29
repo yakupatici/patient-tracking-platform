@@ -1,15 +1,23 @@
 # 🏥 AI-Supported Patient Tracking Platform
 
-A modern patient tracking system built with .NET 8 Backend + Angular 18 Frontend.
+A modern patient tracking system built with **.NET 8 Backend** + **Angular 18 Frontend** + **PostgreSQL Database**.
 
+## 📋 Features
 
+- **Authentication**: JWT-based Register, Login, Signout
+- **Patient Management**: Full CRUD operations
+- **Medical Records**: Patient sub-resource management
+- **AI Prediction**: Mock AI module for patient health predictions
+- **API Documentation**: Swagger UI with JWT support
+
+---
 
 ## 🚀 Quick Start
 
-### Option 1: Run with Docker 
+### Option 1: Docker (Recommended)
 
 ```bash
-# Start all services
+# Start all services (Backend, Frontend, PostgreSQL)
 docker-compose up -d
 
 # Access the application
@@ -21,25 +29,87 @@ docker-compose up -d
 docker-compose down
 ```
 
-### Option 2: Run Manually
+---
 
-**1. Start PostgreSQL**
+### Option 2: Manual Setup
+
+#### Prerequisites
+- .NET 8 SDK
+- Node.js 18+ & npm
+- PostgreSQL 16
+
+#### Step 1: Database Setup
 ```bash
+# macOS
 brew services start postgresql@16
+
+# Create database (if not exists)
+createdb patienttracking
 ```
 
-**2. Start Backend**
+#### Step 2: Backend
 ```bash
 cd backend/PatientTracking.API
+dotnet restore
 dotnet run
 ```
 Backend runs at: `http://localhost:5283`
 
-**3. Start Frontend**
+#### Step 3: Frontend
 ```bash
 cd frontend/patient-tracking-app
+
+# Install dependencies (creates node_modules)
 npm install
+
+# Start development server
 ng serve
 ```
 Frontend runs at: `http://localhost:4200`
 
+---
+
+## 🧪 Running Tests
+
+```bash
+cd backend/PatientTracking.Tests
+dotnet test
+```
+
+---
+
+## 📁 Project Structure
+
+```
+├── backend/
+│   ├── PatientTracking.API/     # .NET 8 Web API
+│   └── PatientTracking.Tests/   # Unit Tests (xUnit)
+├── frontend/
+│   └── patient-tracking-app/    # Angular 18 SPA
+└── docker-compose.yml           # Docker orchestration
+```
+
+---
+
+## 🔗 API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/auth/register` | POST | User registration |
+| `/api/auth/login` | POST | User login |
+| `/api/auth/signout` | POST | User logout |
+| `/api/patients` | GET, POST | List/Create patients |
+| `/api/patients/{id}` | GET, PUT, DELETE | Patient operations |
+| `/api/patients/{id}/medicalrecords` | GET, POST | Medical records |
+| `/api/ai/predict/{patientId}` | GET | AI predictions |
+
+---
+
+## 🛠 Tech Stack
+
+- **Backend**: .NET 8, Entity Framework Core, JWT
+- **Frontend**: Angular 18, TypeScript, RxJS
+- **Database**: PostgreSQL 16
+- **DevOps**: Docker, Docker Compose
+- **Testing**: xUnit, Moq
+- **Docs**: Swagger/OpenAPI

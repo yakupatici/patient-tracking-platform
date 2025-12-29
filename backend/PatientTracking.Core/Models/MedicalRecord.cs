@@ -4,7 +4,7 @@ namespace PatientTracking.Core.Models;
 
 public class MedicalRecord
 {
-    public int Id { get; set; }
+    public int Id { get; set; } 
     public int PatientId { get; set; }
     public string Description { get; set; } = string.Empty;
     public string DoctorRemarks { get; set; } = string.Empty;

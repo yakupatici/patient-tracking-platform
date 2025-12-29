@@ -6,10 +6,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace PatientTracking.API.Migrations
 {
-    /// <inheritdoc />
+   
     public partial class InitialCreate : Migration
     {
-        /// <inheritdoc />
+   
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -79,7 +79,7 @@ namespace PatientTracking.API.Migrations
                 unique: true);
         }
 
-        /// <inheritdoc 
+   
         /// Reverses the migration
         protected override void Down(MigrationBuilder migrationBuilder)
         {

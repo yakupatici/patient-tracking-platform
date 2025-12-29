@@ -1,4 +1,4 @@
-/* Global Stiller */
+/* Global styles */
 
 * {
     margin: 0;
@@ -13,9 +13,9 @@ body {
     line-height: 1.6;
 }
 
-/* Genel buton stilleri */
+/* General button styles */
 button {
-    cursor: pointer;
+    cursor: pointer;    
     transition: all 0.3s ease;
 }
 
@@ -23,7 +23,7 @@ button:hover {
     transform: translateY(-1px);
 }
 
-/* Link stilleri */
+/* Link styles */
 a {
     color: #1e90ff;
     text-decoration: none;

@@ -4,10 +4,10 @@
 
 namespace PatientTracking.API.Migrations
 {
-    /// <inheritdoc />
+
     public partial class AddTcIdToPatient : Migration
     {
-        /// <inheritdoc />
+   
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
@@ -18,7 +18,7 @@ namespace PatientTracking.API.Migrations
                 defaultValue: "");
         }
 
-        /// <inheritdoc />
+       
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(

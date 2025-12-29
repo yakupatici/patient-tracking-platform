@@ -131,6 +131,8 @@ namespace PatientTracking.API.Migrations
                 {
                     b.Navigation("MedicalRecords");
                 });
+
+//ef core warnings to disable
 #pragma warning restore 612, 618
         }
     }
